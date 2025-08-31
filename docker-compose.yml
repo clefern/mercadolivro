@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.0    # <— change from 8.4 to 8.0.x
+    container_name: ml-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mercadolivro
+      MYSQL_USER: ml
+      MYSQL_PASSWORD: mlpwd
+      TZ: UTC
+    ports:
+      - "3307:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  adminer:
+    image: adminer:4
+    container_name: ml-adminer
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
