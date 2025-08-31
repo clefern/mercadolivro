@@ -1,6 +1,7 @@
 package com.mercadolivro.services
 
 import com.mercadolivro.enums.CustomerStatus
+import com.mercadolivro.enums.Errors
 import com.mercadolivro.exceptions.NotFoundException
 import com.mercadolivro.models.CustomerModel
 import com.mercadolivro.repository.CustomerRepository
@@ -26,20 +27,20 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return repository.findById(id).orElseThrow { NotFoundException(message = "Customer não existe", errorCode = "ML-0003") }
+        return repository.findById(id).orElseThrow { NotFoundException(Errors.ML_101.message, Errors.ML_101.code) }
     }
 
     fun update(customer: CustomerModel) {
         if (!repository.existsById(customer.id!!)) {
             println(customer.id)
-            throw NotFoundException(message = "Customer não existe", errorCode = "ML-0003")
+            throw NotFoundException(Errors.ML_101.message, Errors.ML_101.code)
         }
         repository.save<CustomerModel>(customer)
     }
 
     fun delete(id: Int) {
         if (!repository.existsById(id)) {
-            throw NotFoundException(message = "Customer não existe", errorCode = "ML-0003")
+            throw NotFoundException(Errors.ML_101.message, Errors.ML_101.code)
         }
         val customer = findById(id)
         bookService.deleteByCustomer(customer)
