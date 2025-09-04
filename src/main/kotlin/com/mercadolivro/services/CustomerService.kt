@@ -27,20 +27,20 @@ class CustomerService(
     }
 
     fun findById(id: Int): CustomerModel {
-        return repository.findById(id).orElseThrow { NotFoundException(Errors.ML_101.message, Errors.ML_101.code) }
+        return repository.findById(id).orElseThrow { NotFoundException(Errors.ML_101, id.toString()) }
     }
 
     fun update(customer: CustomerModel) {
         if (!repository.existsById(customer.id!!)) {
             println(customer.id)
-            throw NotFoundException(Errors.ML_101.message, Errors.ML_101.code)
+            throw NotFoundException(Errors.ML_101, customer.id.toString())
         }
         repository.save<CustomerModel>(customer)
     }
 
     fun delete(id: Int) {
         if (!repository.existsById(id)) {
-            throw NotFoundException(Errors.ML_101.message, Errors.ML_101.code)
+            throw NotFoundException(Errors.ML_101, id.toString())
         }
         val customer = findById(id)
         bookService.deleteByCustomer(customer)

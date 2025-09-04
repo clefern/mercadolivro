@@ -1,6 +1,8 @@
 package com.mercadolivro.models
 
 import com.mercadolivro.enums.BookStatus
+import com.mercadolivro.enums.Errors
+import com.mercadolivro.exceptions.BadRequestException
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.EnumType
@@ -28,12 +30,12 @@ data class BookModel (
     @JoinColumn(name = "customer_id")
     var customer: CustomerModel? = null
 ) {
-    @Column(nullable = false)
+    @Column
     @Enumerated(EnumType.STRING)
     var status: BookStatus? = null
         set(value) {
             if (field == BookStatus.CANCELED || field == BookStatus.DELETED) {
-                throw Exception("O status $field não pode ser alterado")
+                throw BadRequestException(Errors.ML_102, field?.toString())
             }
             field = value
         }

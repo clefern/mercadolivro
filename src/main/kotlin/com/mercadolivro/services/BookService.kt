@@ -28,20 +28,20 @@ class BookService(
     }
 
     fun findById(id: Int): BookModel {
-        return repository.findById(id).orElseThrow { NotFoundException(Errors.ML_201.message, Errors.ML_201.code) }
+        return repository.findById(id).orElseThrow { NotFoundException(Errors.ML_201, id.toString()) }
     }
 
     fun update(book: BookModel) {
         if (!repository.existsById(book.id!!)) {
             println(book.id)
-            throw NotFoundException(Errors.ML_201.message, Errors.ML_201.code)
+            throw NotFoundException(Errors.ML_201, book.id.toString())
         }
         repository.save<BookModel>(book)
     }
 
     fun delete(id: Int) {
         if (!repository.existsById(id)) {
-            throw NotFoundException(Errors.ML_201.message, Errors.ML_201.code)
+            throw NotFoundException(Errors.ML_201, id.toString())
         }
         val book = findById(id)
         book.status = BookStatus.DELETED
@@ -53,6 +53,6 @@ class BookService(
         for(book in books) {
             book.status = BookStatus.DELETED
         }
-        repository.saveAll<BookModel>(books)
+        repository.saveAll(books)
     }
 }
