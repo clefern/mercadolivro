@@ -39,7 +39,7 @@ class ControllerAdvice {
     fun handleBadRequest(ex: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val errorResponse = ErrorResponse(
             HttpStatus.UNPROCESSABLE_ENTITY.value(),
-            ex.message,
+            Errors.ML_101.message,
             Errors.ML_101.code,
             ex.bindingResult.fieldErrors.map { FieldErrorResponse(it.defaultMessage ?: "Invalid field", it.field) }
         )
