@@ -4,6 +4,7 @@ import jakarta.validation.Constraint
 import jakarta.validation.Payload
 import kotlin.reflect.KClass
 
+@Suppress("unused")
 @Constraint(validatedBy = [EmailAvailableValidator::class])
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FIELD)
