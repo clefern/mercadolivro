@@ -20,9 +20,12 @@ spring:
     default-property-inclusion: non_null
     serialization:
       write-dates-as-timestamps: false
-  # optional: give MySQL time to come up
-  # datasource:
-  #   hikari:
-  #     initialization-fail-timeout: 60000
 
+  springdoc:
+    api-docs:
+      enabled: true
+    swagger-ui:
+      enabled: true
+      operationsSorter: method
+      tagsSorter: alpha
 
