@@ -1,6 +1,7 @@
 package com.mercadolivro.controllers
 
 import com.mercadolivro.controllers.requests.PostPurchaseRequest
+import com.mercadolivro.controllers.responses.PurchaseResponse
 import com.mercadolivro.mappers.PurchaseMapper
 import com.mercadolivro.models.PurchaseModel
 import com.mercadolivro.services.PurchaseService
@@ -24,8 +25,8 @@ class PurchaseController(
 ) {
 
     @GetMapping
-    fun findAll(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<PurchaseModel> {
-        return service.findAll(pageable)
+    fun findAll(@PageableDefault(page = 0, size = 10) pageable: Pageable): Page<PurchaseResponse> {
+        return service.findAll(pageable).map { mapper.toResponse(it) }
     }
 
     @PostMapping
