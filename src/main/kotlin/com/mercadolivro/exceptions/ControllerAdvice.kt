@@ -35,6 +35,17 @@ class ControllerAdvice {
         return ResponseEntity(errorResponse, HttpStatus.BAD_REQUEST)
     }
 
+    @ExceptionHandler(InsufficientStockException::class)
+    fun handleInsufficientStock(ex: InsufficientStockException, request: WebRequest): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            HttpStatus.CONFLICT.value(),
+            ex.message,
+            ex.errorCode,
+            null
+        )
+        return ResponseEntity(errorResponse, HttpStatus.CONFLICT)
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleBadRequest(ex: MethodArgumentNotValidException, request: WebRequest): ResponseEntity<ErrorResponse> {
         val errorResponse = ErrorResponse(
