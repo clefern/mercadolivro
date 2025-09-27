@@ -24,6 +24,7 @@ class BookService(
     }
 
     fun create(book: BookModel) {
+        book.stock = 1
         repository.save<BookModel>(book)
     }
 
@@ -45,6 +46,7 @@ class BookService(
         }
         val book = findById(id)
         book.status = BookStatus.DELETED
+        book.stock = 0
         repository.save(book)
     }
 
@@ -60,9 +62,20 @@ class BookService(
         return repository.findAllById(bookIds).toList()
     }
 
+    fun purchase(book: BookModel) {
+        book.status = BookStatus.SOLD
+        if (book.stock > 0) {
+            book.stock -= 1
+        }
+        repository.save(book)
+    }
+
     fun purchase(books: MutableList<BookModel>) {
         books.map {
             it.status = BookStatus.SOLD
+            if (it.stock > 0) {
+                it.stock -= 1
+            }
         }
         repository.saveAll(books)
     }

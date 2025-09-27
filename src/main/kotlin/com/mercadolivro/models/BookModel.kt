@@ -28,7 +28,10 @@ data class BookModel (
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    var customer: CustomerModel? = null
+    var customer: CustomerModel? = null,
+
+    @Column(nullable = false)
+    var stock: Int = 0
 ) {
     @Column
     @Enumerated(EnumType.STRING)
@@ -45,8 +48,9 @@ data class BookModel (
         name: String,
         price: BigDecimal,
         customer: CustomerModel? = null,
-        status: BookStatus?
-    ): this(id, name, price, customer) {
+        status: BookStatus?,
+        stock: Int = 0
+    ): this(id, name, price, customer, stock) {
         this.status = status
     }
 }

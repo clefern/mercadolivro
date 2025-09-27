@@ -1,0 +1,1 @@
+alter table books add column stock int not null default 0

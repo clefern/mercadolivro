@@ -9,5 +9,6 @@ class BookResponse (
     var name: String,
     var price: BigDecimal,
     var status: BookStatus?,
-    var customer: CustomerModel?
+    var customer: CustomerModel?,
+    var stock: Int = 0
 )
