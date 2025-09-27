@@ -1,0 +1,41 @@
+{
+    "recommendations": [
+        // Kotlin essencial
+        "fwcd.kotlin",
+        
+        // Java/JVM support
+        "redhat.java",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-gradle",
+        
+        // Spring Boot
+        "vmware.vscode-spring-boot",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-spring-boot-dashboard",
+        
+        // Database/SQL
+        "ms-mssql.mssql",
+        "cweijan.vscode-mysql-client2",
+        
+        // Git integration
+        "eamodio.gitlens",
+        
+        // REST Client
+        "humao.rest-client",
+        
+        // Docker
+        "ms-azuretools.vscode-docker",
+        
+        // Productivity
+        "ms-vscode.vscode-json",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-typescript-next",
+        
+        // Code quality
+        "sonarsource.sonarlint-vscode",
+        
+        // Themes (optional)
+        "pkief.material-icon-theme",
+        "zhuangtongfa.material-theme"
+    ]
+}

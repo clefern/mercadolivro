@@ -1,0 +1,43 @@
+{
+    // Kotlin Language Server
+    "kotlin.languageServer.enabled": true,
+    "kotlin.languageServer.path": "",
+    "kotlin.compiler.jvm.target": "17",
+    
+    // Java/Kotlin Integration
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.import.gradle.enabled": true,
+    "java.import.gradle.wrapper.enabled": true,
+    "java.import.gradle.java.home": "",
+    
+    // Spring Boot
+    "spring-boot.ls.java.home": "",
+    "spring-boot.ls.java.heap": "1024m",
+    "spring-boot.ls.java.vmargs": [
+        "-XX:TieredStopAtLevel=1",
+        "-Xverify:none"
+    ],
+    
+    // Editor enhancements
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    },
+    
+    // File associations
+    "files.associations": {
+        "*.kt": "kotlin",
+        "*.kts": "kotlin"
+    },
+    
+    // Gradle integration
+    "gradle.nestedProjects": true,
+    "gradle.autoDetect": "on",
+    
+    // IntelliSense improvements
+    "editor.parameterHints.enabled": true,
+    "editor.hover.enabled": true,
+    "editor.definitionLinkOpensInPeek": false
+}
